@@ -1,0 +1,38 @@
+{
+  "name": "demo-tests",
+  "description": "Demo Tests",
+  "author": "Kien",
+  "license": "MIT",
+  "keywords": [
+    "eslint",
+    "cypress"
+  ],
+  "dependencies": {
+    "@percy/cypress": "^3.1.1",
+    "cypress": "8.5.0",
+    "cypress-mochawesome-reporter": "2.3.0",
+    "mochawesome": "7.0.1",
+    "mochawesome-merge": "4.2.1",
+    "npm": "^8.2.0",
+    "ws": "^8.5.0",
+    "yarn": "^1.22.10"
+  },
+  "devDependencies": {
+    "@percy/cli": "^1.0.0-beta.75",
+    "@percy/storybook": "^4.1.0",
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-chai-friendly": "^0.7.1",
+    "eslint-plugin-cypress": "^2.11.3",
+    "eslint-plugin-import": "^2.23.3"
+  },
+  "scripts": {
+    "cleanInstall": "npm ci",
+    "cypress:merge": "mochawesome-merge ./cypress/reports/html/.jsons/*.json -o ./cypress/reports/merge/output.json",
+    "cypress:generate": "marge cypress/reports/merge/output.json -f output -o ./cypress/reports",
+    "delete_reports": "node deleteReports.js",
+    "prod:test": "CYPRESS_ENV='prod' cypress open",
+    "pretest": "node_modules/yarn/bin/yarn run delete_reports",
+    "posttest": "node_modules/yarn/bin/yarn run cypress:merge && node_modules/yarn/bin/yarn run cypress:generate",
+  }
+}
