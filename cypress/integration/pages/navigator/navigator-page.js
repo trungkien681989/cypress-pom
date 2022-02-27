@@ -68,41 +68,7 @@ export default class NavigatorPage {
 
   setBaseUrl() {
     switch (Cypress.env('ENV')) {
-      case 'qa':
-        cy.task('setValue', {
-          key: 'auctionId',
-          value: 'QLM1',
-        });
-        cy.task('setValue', {
-          key: 'baseUrl',
-          value: 'https://www.manheim.man-qa1.com/',
-        });
-        break;
-      case 'silo5':
-        cy.task('setValue', {
-          key: 'auctionId',
-          value: 'QLM1',
-        });
-        cy.task('setValue', {
-          key: 'baseUrl',
-          value: 'https://www.manheim.man-silo5.com',
-        });
-        break;
-      case 'uat':
-        cy.task('setValue', {
-          key: 'auctionId',
-          value: 'PLM1',
-        });
-        cy.task('setValue', {
-          key: 'baseUrl',
-          value: 'https://www.manheim.man-uat.com',
-        });
-        break;
       default:
-        cy.task('setValue', {
-          key: 'auctionId',
-          value: 'CINA',
-        });
         cy.task('setValue', {
           key: 'baseUrl',
           value: 'https://www.manheim.com/',
